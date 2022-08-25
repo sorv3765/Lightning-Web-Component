@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LightningComponentBundle xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>54.0</apiVersion>
+    <isExposed>true</isExposed>
+    <masterLabel>Opportunity Record Form Component</masterLabel>
+    <description>This component will be used to display an Opportunity Record.</description>
+    <targets>
+        <target>lightning__RecordPage</target>
+        <target>lightning__AppPage</target>
+        <target>lightning__HomePage</target>
+    </targets>
+    <targetConfigs>
+        <targetConfig targets="lightning__RecordPage, lightning__AppPage,lightning__HomePage">
+            <property name = "layoutType" type = "String" label = "Layout Type" default = "Compact" 
+                description = "This value will toggle bewteen Compact and Full"
+                datasource = "Compact, Full"></property>
+            <property name="mode" type="String" label="Form Mode" description="Valid values are readonly, view, and edit"
+                datasource="readonly, edit, view"></property>
+        </targetConfig>
+    </targetConfigs>
+</LightningComponentBundle>

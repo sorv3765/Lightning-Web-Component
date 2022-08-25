@@ -1,0 +1,38 @@
+<template>
+    <lightning-card icon-name="standard:account">
+        <h1 slot="title"><a onclick={handleSelect}>{name}</a></h1>
+        <div class="slds-tile slds-var-m-around_small">
+            <div class="slds-tile__detail">
+                <dl class="slds-list_horizontal slds-wrap">
+                    <dt class="slds-item_label slds-text-color_weak slds-truncate" title="Annual Revenue">Annual Revenue:</dt>
+                    <dd class="slds-item_detail slds-truncate" title="Annual Revenue of the Account">
+                        <lightning-formatted-number value={annualRevenue} format-style="currency" currency-code="USD">
+                        </lightning-formatted-number>
+                    </dd>
+                    <dt class="slds-item_label slds-text-color_weak slds-truncate" title="Phone">Phone:</dt>
+                    <dd class="slds-item_detail slds-truncate" title="Phone number for Account">
+                        <lightning-formatted-phone value={phone}></lightning-formatted-phone>
+                    </dd>
+                </dl>
+            </div>
+        </div>
+        <div slot="actions">
+            <lightning-icon icon-name="standard:contact" size="small" onclick={displayContacts}></lightning-icon>
+        </div>
+            <template if:true={showContacts}>
+                <template for:each={contacts} for:item="con">
+                    <div key={con.Id}>
+                        <ul class="slds-list_horizontal slds-has-dividers_right">
+                            <li class="slds-item"><p>{con.Name} </p></li>
+                            <li class="slds-item"><p>{con.Title}</p></li>
+                            <li class="slds-item">
+                                <lightning-icon icon-name="utility:call" size="x-small"></lightning-icon>
+                                <lightning-formatted-phone value={con.Phone}></lightning-formatted-phone></p></li>
+                            <li class="slds-item">
+                                <lightning-formatted-email value={con.Email}></lightning-formatted-email></li>
+                        </ul>
+                    </div>
+                </template>
+            </template>    
+    </lightning-card>
+</template>

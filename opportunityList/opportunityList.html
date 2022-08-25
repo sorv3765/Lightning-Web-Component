@@ -1,0 +1,50 @@
+<!-- sldsValidatorIgnore -->
+<!-- sldsValidatorIgnore -->
+<template>
+
+    <!--                   PICKLIST DROP DOWN STAGE FILTER            -->
+    <div class="slds-grid slds-var-m-bottom_small">
+        <div class="slds-col">
+            <lightning-combobox variant="label-hidden" placeholder="Stage Filter" label="Stage Filter" options={options} onchange={handleChange}></lightning-combobox>
+        </div>
+        <!--                MENU BUTTON-->
+        <div class="slds-col">
+            <lightning-button-menu label="Card or Table?" onselect={handleToggle} class="slds-float_right">
+                <lightning-menu-item icon-name="standard:record" label="Card" value="card"></lightning-menu-item>
+                <lightning-menu-item icon-name="utility:table" label="Table" value="table"></lightning-menu-item>
+            </lightning-button-menu>
+        </div>
+    </div>
+    <template if:true={recordsToDisplay}>
+            <!--          determining if you have any records to display using opp card -->
+        <template if:false={tableMode}>
+            <template for:each={displayedOpps} for:item="opp">
+                <div key={opp.Id}>
+                    <c-opp-card 
+                    opp-id={opp.Id} name={opp.Name} amount={opp.Amount} 
+                    stage={opp.StageName} close-date={opp.CloseDate} onmodsaved={refresh}></c-opp-card>
+                </div>
+            </template>
+        </template>
+        <template if:true={tableMode}>
+            <!--                           The DATA TABLE                                 -->
+            <lightning-datatable columns={columns} key-field="Id" data={displayedOpps}></lightning-datatable>
+        </template>
+    </template>
+    <div class="slds-tile">
+        <div class="slds-tile__detail">
+            <dl class="slds-list_horizontal slds-wrap">
+                <dt class="slds-item_label slds-text-color_weak slds-truncate" title="Total Records">Total Records:</dt>
+                <dd class="slds-item_detail slds-truncate" title="Record Count">{totalRecords}</dd>
+                <dt class="slds-item_label slds-text-color_weak slds-truncate" title="Total Amount">Total Amount:</dt>
+                <dd class="slds-item_detail slds-truncate" title="Total amount for all opportunities">
+                  <lightning-formatted-number value={totalAmount} format-style="currency" currency-code="USD"></lightning-formatted-number>
+                </dd>
+            </dl>
+        </div>
+    </div>
+    
+    <template if:false={recordsToDisplay}>
+        <p>No Related Opportunities to display.</p>
+    </template>
+</template>

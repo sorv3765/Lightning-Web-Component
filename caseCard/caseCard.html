@@ -1,0 +1,58 @@
+<template>
+    <lightning-card icon-name="standard:case">
+        <h1 slot="title"><a onclick={viewCase}>{caseNumber}</a></h1>
+        <div class="slds-tile slds-var-m-around_small">
+            <div class="slds-tile__detail"> 
+                <dl class="slds-list_horizontal slds-wrap">
+                    <dd class="slds-item_detail slds-truncate" title="Subject">
+                        Subject: {subject}
+                    </dd>
+                    <dd class="slds-item_detail slds-truncate" title="Status">
+                        Status: {status}
+                    </dd>
+                    <dd class="slds-item_detail slds-truncate" title="Priority">
+                        Priority: {priority}
+                    </dd>
+               </dl>
+            </div>
+        </div>  
+        <div slot="actions">
+            <lightning-icon title="Edit" icon-name="utility:edit" size="x-small" onclick={editCase}></lightning-icon>
+        </div>
+        <template if:true={modOpen}>
+            <!-- This is where our modal window beings -->
+            <!-- <section role="dialog" tabindex="-1" aria-labelledby="modal-heading-01" aria-modal="true" class="slds-modal slds-fade-in-open">
+                <div class="slds-modal__container">
+                    <lightning-button-icon icon-name="utility:close" icon-class="slds-button_icon-inverse" class="slds-modal__close" title="Close" onclick={closeClick}></lightning-button-icon>
+                <div class="slds-modal__header">
+                    <h1 id="modal-heading-01" class="slds-modal__title slds-hyphenate">Edit Case</h1>
+                </div>
+                <div class="slds-modal__content slds-var-p-around_medium" id="modal-content-id-1">
+                    <!-              Create inside the body     -->
+                    <!-- <c-opp-record-form 
+                    record-id={caseId} 
+                    object-api-name="Case" 
+                    layout-type="Compact" 
+                    mode="edit"
+                    oncanceled={cancelMod}
+                    onsaved={saveMod}></c-opp-record-form>
+                </div>
+                <div class="slds-modal__footer">
+                    <p> This information is the sole property of GenWatt, Inc.</p>
+                </div>
+                </div>
+            </section>
+                <div class="slds-backdrop slds-backdrop_open" role="presentation"></div> -->
+            <!-- This is where our modal window ends -->
+            <c-record-modal
+                record-id={caseId}
+                object-api-name="Case"
+                layout-type="Compact"
+                form-mode="edit"
+                onclose={closeClick}
+                oncancel={cancelMod}
+                onsuccess={saveMod}>
+            </c-record-modal>
+        </template>
+    </lightning-card>
+</template>

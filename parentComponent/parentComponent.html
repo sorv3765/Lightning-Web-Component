@@ -1,0 +1,12 @@
+<template>
+    <div>
+        <h1>Parent Component</h1>
+        <p>The user selected: {selectedName}</p>
+        <p>Another user selected: {anotherName}</p>
+        <template for:each={contacts} for:item="con">
+            <div key={con.Id}>
+                <c-child-component first-name={con.firstName} last-name={con.lastName} oncustevent={handleCustEvent}></c-child-component>
+            </div>
+        </template>
+    </div>
+</template>

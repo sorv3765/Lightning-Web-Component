@@ -1,0 +1,14 @@
+<template>
+    <lightning-card>
+        <div class="slds-var-m-bottom_small">
+            <lightning-combobox label="Greeting" options={comboBoxOne} onchange={comboChange}></lightning-combobox>
+        </div>
+        <div class="slds-var-m-bottom_small">
+            <lightning-combobox label="First Name" options={comboBoxTwo} onchange={cboxChange}></lightning-combobox>
+        </div>
+        <div class="slds-var-m-bottom_small">
+            <lightning-combobox label="Last Name" options={comboBoxThree} onchange={lastBoxChange}></lightning-combobox>
+        </div>
+        <p>{greeting} {firstName} {lastName}!</p>
+    </lightning-card>
+</template>

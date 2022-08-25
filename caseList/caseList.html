@@ -1,0 +1,17 @@
+<template>
+    <h1>Case List</h1>
+    <template if:true={cases}></template>
+        <template for:each={cases} for:item="cass">
+            <div key={cass.Id}>
+                <!-- case id is need to pass in the Navigation Mixin viewCase Method-->
+                <c-case-card
+                    case-id={cass.Id}                      
+                    case-number={cass.CaseNumber}
+                    subject={cass.Subject}
+                    status={cass.Status}
+                    priority={cass.Priority} 
+                ></c-case-card>   
+            </div>
+        </template>
+    </template>
+</template>

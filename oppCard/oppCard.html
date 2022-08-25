@@ -1,0 +1,53 @@
+<!-- sldsValidatorIgnore -->
+<!-- sldsValidatorIgnore -->
+<template>
+    <lightning-card icon-name="standard:opportunity">
+        <div slot="actions">
+            <lightning-icon title="Edit" icon-name="utility:edit" size="x-small" onclick={editOpp}></lightning-icon>
+        </div>
+        <template if:true={modOpen}>
+            <!-- This is where our modal window beings -->
+            <section role="dialog" tabindex="-1" aria-labelledby="modal-heading-01" aria-modal="true" class="slds-modal slds-fade-in-open">
+                <div class="slds-modal__container">
+                    <lightning-button-icon icon-name="utility:close" icon-class="slds-button_icon-inverse" class="slds-modal__close" title="Close" onclick={closeClick}></lightning-button-icon>
+                <div class="slds-modal__header">
+                    <h1 id="modal-heading-01" class="slds-modal__title slds-hyphenate">Edit Opportunity</h1>
+                </div>
+                <div class="slds-modal__content slds-var-p-around_medium" id="modal-content-id-1">
+                    <!--               Create inside the body     -->
+                    <c-opp-record-form 
+                    record-id={oppId} 
+                    object-api-name="Opportunity" 
+                    layout-type="Compact" 
+                    mode="edit"
+                    oncanceled={cancelMod}
+                    onsaved={saveMod}></c-opp-record-form>
+                </div>
+                <div class="slds-modal__footer">
+                    <p> This information is the sole property of GenWatt, Inc.</p>
+                </div>
+                </div>
+            </section>
+                <div class="slds-backdrop slds-backdrop_open" role="presentation"></div>
+            <!-- This is where our modal window ends -->
+        </template>
+    <h1 slot="title"><a onclick={viewRecord}>{name}</a></h1>
+    <div class="slds-tile">
+            <div class="slds-tile__detail">
+                <dl class="slds-list_horizontal slds-wrap">
+                  <dt class="slds-item_label slds-text-color_weak slds-truncate" title="Name">Name:</dt>
+                  <dd class="slds-item_detail slds-truncate" title="Name is the answer">{name}</dd>
+                  <dt class="slds-item_label slds-text-color_weak slds-truncate" title="Amount">Amount:</dt>
+                  <dd class="slds-item_detail slds-truncate" title="answer for amount">
+                      <lightning-formatted-number value={amount} format-style="currency" currency-code="USD"></lightning-formatted-number>
+                    </dd>
+                  <dt class="slds-item_label slds-text-color_weak slds-truncate" title="Stage Name">Stage Name:</dt>
+                  <dd class="slds-item_detail slds-truncate" title="Stage Name is the answer">{stage}</dd>
+                  <dt class="slds-item_label slds-text-color_weak slds-truncate" title="Close Date">Close Date:</dt>
+                    <lightning-formatted-date-time value={closeDate} ></lightning-formatted-date-time>
+                </dl>
+            </div>
+        </div>
+    </lightning-card>
+
+</template>

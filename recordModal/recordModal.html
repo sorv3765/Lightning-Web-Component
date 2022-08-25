@@ -1,0 +1,29 @@
+<template>
+    <section role="dialog" tabindex="-1" aria-labelledby="modal-heading-01" aria-modal="true"
+            class="slds-modal slds-fade-in-open">
+            <div class="slds-modal__container">
+                <lightning-button-icon icon-name="utility:close" icon-class="slds-button_icon-inverse" 
+                    class="slds-modal__close" title="Close" onclick={closeModal}></lightning-button-icon>
+                <div class="slds-modal__header">
+                    <h1 id="modal-heading-01" class="slds-modal__title slds-hyphenate">{modalLabel}</h1>
+                </div>
+                <div class="slds-modal__content slds-p-around_medium" id="modal-content-id-1">
+                    <lightning-record-form
+                        record-id={recordId}
+                        object-api-name={objectApiName}
+                        layout-type={layoutType}
+                        mode={formMode}
+                        oncancel={cancelModal}
+                        onsuccess={successModal}
+                    ></lightning-record-form>
+                </div>
+                <div class="slds-modal__footer">
+                    <p class="slds-align_absolute-center">This information is the sole property of GenWatt, Inc.</p>
+                </div>
+            </div>
+        </section>
+        <div class="slds-backdrop slds-backdrop_open" role="presentation"></div>
+</template>
+
+
+

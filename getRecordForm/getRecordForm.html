@@ -1,0 +1,11 @@
+<template>
+    <lightning-card>
+        <template if:true={contact}>
+            <!-- <p>{contact.data.fields.Name.value}</p> -->
+            <p>Name: {name}</p>
+        </template>
+        <template if:true={error}>
+            <p>Errors occured retrieving the record.</p>
+        </template>
+    </lightning-card>
+</template>

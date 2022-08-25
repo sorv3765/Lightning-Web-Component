@@ -1,0 +1,28 @@
+<template>
+<lightning-card icon-name="standard:account">
+    <template for:each={records} for:item="acct">
+        <div key={acct.Id}>
+            <!--<p>{acct.Name}</p>
+            <p>{acct.AnnualRevenue}</p>
+            <p>{acct.Phone}</p> -->
+            <c-acct-card 
+                acct-id={acct.Id} 
+                name={acct.Name} 
+                annual-revenue={acct.AnnualRevenue} 
+                phone={acct.Phone}
+                onselected={handleSelect}></c-acct-card>
+        </div>
+    </template>
+    <div slot="actions">
+        <lightning-icon title="Create New Account" label="New" onclick={createAcct}></lightning-icon>
+    </div>
+        <c-record-modal
+                object-api-name="Account"
+                layout-type="Compact"
+                form-mode="edit"
+                onclose={closeClick}
+                oncancel={cancelMod}
+                onsuccess={saveMod}>
+        </c-record-modal>
+</lightning-card>
+</template>
